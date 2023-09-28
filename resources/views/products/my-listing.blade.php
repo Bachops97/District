@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Products Listing</div>
+                <div class="card-header">My Products Listing</div>
 
                 <div class="card-body">
                     @if(count($products) > 0)

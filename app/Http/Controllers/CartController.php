@@ -39,9 +39,9 @@ class CartController extends Controller
         $quantity = $request->input('quantity');
 
         $product = ProductModel::find($productId);
-        if (!$product || $product->quantities < $quantity) {
-            // Handle validation error or insufficient quantity
-        }
+        // if (!$product || $product->quantities < $quantity) {
+
+        // }
 
         $user = auth()->user();
         $existingCartItem = $user->cartItems()->where('product_id', $productId)->first();
@@ -69,7 +69,6 @@ class CartController extends Controller
 
         $difference = $cartItem->quantity - $validatedData['quantity'];
 
-        // Update the cart item's quantity
         $cartItem->update(['quantity' => $validatedData['quantity']]);
 
         if ($difference > 0) {
@@ -87,16 +86,12 @@ class CartController extends Controller
 
     public function removeFromCart(CartItem $cartItem)
     {
-        // Get the product associated with the cart item
         $product = $cartItem->product;
 
-        // Increment the product's quantity by the quantity in the cart item
         $product->increment('quantities', $cartItem->quantity);
 
-        // Delete the cart item
         $cartItem->delete();
 
-        // Redirect back to the cart view
         return redirect()->route('cart.index')->with('success', 'Item removed from cart.');
     }
 

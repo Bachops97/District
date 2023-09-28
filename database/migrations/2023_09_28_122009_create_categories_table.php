@@ -17,7 +17,6 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        // Insert three random categories
         DB::table('categories')->insert([
             ['name' => 'Category 1'],
             ['name' => 'Category 2'],
